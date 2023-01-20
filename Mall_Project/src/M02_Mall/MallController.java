@@ -12,7 +12,6 @@ public class MallController {
 	adminController adminctrl;
 	CartController cartctrl;
 	
-	
 	private MallController() {}
 	static private MallController instance = new MallController();
 	static public  MallController getInstance(){
@@ -60,7 +59,6 @@ public class MallController {
 				System.out.println("종료합니다.");
 				break;
 			}
-			
 		}
 	}
 	

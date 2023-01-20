@@ -39,7 +39,6 @@ public class CartDAO {
 		System.out.println(item + "를 담았습니디.");
 		Cart cart = new Cart(getcartNumber(), id, item, price);
 		cartList.add(cart);
-		System.out.println(cartList.get(0).getItemName()+"<------");
 	}
 
 	//카트 비우기
