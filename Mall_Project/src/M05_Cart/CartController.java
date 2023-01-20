@@ -12,6 +12,7 @@ public class CartController {
 	MallController Mctrl;
 	MemberController MemberCtrl;
 	CartDAO cdao ;
+	String som;
 			
 	private CartController() {}
 	static private CartController instance = new CartController();
