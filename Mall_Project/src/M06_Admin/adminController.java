@@ -23,7 +23,7 @@ public class adminController {
 		printMenu();
 	}
 	
-	void init(){
+	public void init(){
 		memdao = MemberDAO.getInstance();
 		
 		cartdao = cartdao.getCartDAO();
@@ -59,14 +59,16 @@ public class adminController {
 			int sel = Util.input.getValue("[1]보기 [2]전체삭제 [3]분할삭제 [0]뒤로", 0, 3);
 			if (sel == 0) {
 				break;
+			}else if (cartdao.getCartList().size() == 0) {
+				System.err.println("저장된 카트 내용이 없습니다.");
+				continue;
 			}else if (sel == 1) {
 				cartdao.ShowCartList();
 			}else if (sel == 2) {
-				
+				cartdao.delete_all();
 			}else if (sel == 3) {
-			
+				cartdao.selectiveDelete();
 			}
-
 		}
 		
 		

@@ -41,7 +41,7 @@ public class Cart {
 	}
 	
 	public String toString() {
-		String print = String.format("[%-6d] [%10s] [%10s] [%10d] \n", 
+		String print = String.format("[%-6d] [%10s] [%10s] [%10d]", 
 				number , memberID , itemName , itemPrice);
 		return print;
 	}

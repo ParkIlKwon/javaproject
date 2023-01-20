@@ -3,8 +3,11 @@ package M05_Cart;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
+import M01_Util.Util;
 import M03_Member.MemberController;
+import M06_Admin.treeset;
 
 public class CartDAO {
 	
@@ -30,8 +33,26 @@ public class CartDAO {
 	}
 
 	public ArrayList<Cart> getCartList() {
-		System.out.println(cartList.get(0));
 		return cartList;
+	}
+	
+	public void delete_all() {
+		cartList.removeAll(null);
+	}
+	
+	public void selectiveDelete() {
+		TreeSet<String>idlist = new TreeSet<String>();
+		for (int i = 0; i < cartList.size(); i++) {
+			idlist.add(cartList.get(i).getMemberID());
+		}
+		System.out.println(idlist);
+		String id = Util.input.getString("삭제하실 아이디를 입력하세요 .");
+		for (int i = 0; i < cartList.size(); i++) {
+			if (cartList.get(i).getMemberID().equals(id)) {
+				cartList.remove(i);
+			}
+		}
+		System.out.println("삭제완료");
 	}
 	
 	//카트에 물건 담기 
@@ -73,7 +94,7 @@ public class CartDAO {
 	}
 	
 	public void ShowCartList(){
-		
+		System.out.println(cartList);
 	}
 	
 }
