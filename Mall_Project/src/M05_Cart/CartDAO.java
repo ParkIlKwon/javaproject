@@ -1,19 +1,15 @@
 package M05_Cart;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeSet;
 
 import M01_Util.Util;
 import M03_Member.MemberController;
-import M06_Admin.treeset;
 
 public class CartDAO {
 	
-	private CartDAO(){cartNumber = 1001;};
+	private CartDAO(){};
 	private ArrayList<Cart>cartList = new ArrayList<Cart>();
-	private int cartNumber;
 	private CartController ctrl;
 	private MemberController MemberCtrl; 
 	static public CartDAO instance = new CartDAO();
@@ -36,20 +32,26 @@ public class CartDAO {
 		return cartList;
 	}
 	
+	//전부삭제
 	public void delete_all() {
-		cartList.removeAll(null);
+		cartList.clear();
 	}
 	
+	//분할삭제
 	public void selectiveDelete() {
-		TreeSet<String>idlist = new TreeSet<String>();
-		for (int i = 0; i < cartList.size(); i++) {
-			idlist.add(cartList.get(i).getMemberID());
+		System.out.println("카트의 아이디 정보");
+		TreeSet<String>temp = new TreeSet<>();
+		for (Cart c : cartList) {
+			System.out.println(c.getMemberID());
+			temp.add(c.getMemberID());
 		}
-		System.out.println(idlist);
-		String id = Util.input.getString("삭제하실 아이디를 입력하세요 .");
+		String id = Util.input.getString("삭제하실 아이디를 입력하세요.");
+		if(!temp.contains(id)) return;
+		
 		for (int i = 0; i < cartList.size(); i++) {
 			if (cartList.get(i).getMemberID().equals(id)) {
 				cartList.remove(i);
+				i --;
 			}
 		}
 		System.out.println("삭제완료");
@@ -57,16 +59,18 @@ public class CartDAO {
 	
 	//카트에 물건 담기 
 	public void addCart(String item, String id, int price){
-		System.out.println(item + "를 담았습니디.");
+		System.out.println(item + "를 담았습니다.");
 		Cart cart = new Cart(getcartNumber(), id, item, price);
 		cartList.add(cart);
 	}
 
 	//카트 비우기
 	public void deletCart(String id) {
+		System.out.println(id + "<----");
 		for (int i = 0; i < cartList.size(); i++) {
 			if (cartList.get(i).getMemberID().equals(id)) {
 				cartList.remove(i);
+				i--;
 			}
 		}
 	}

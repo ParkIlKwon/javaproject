@@ -39,8 +39,8 @@ public class CartController {
 					total+= c.getItemPrice();
 				}
 				System.out.printf("총 [%d] 원 입니다 . :)",total);
-				Mctrl.menuMall();
 				cdao.deletCart(MemberCtrl.id);
+				Mctrl.menuMall();
 			}else if (sel == 2 && cdao.getCartList().size() != 0) {
 				cdao.printUsercart(MemberCtrl.id);
 			}else {

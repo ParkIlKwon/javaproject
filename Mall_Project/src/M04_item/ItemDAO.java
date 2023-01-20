@@ -8,6 +8,7 @@ public class ItemDAO {
 
 	ArrayList<Item> itemList;
 	private int itemNumber;
+	public static ItemDAO idao = new ItemDAO();
 	public ItemDAO() {
 		itemList = new ArrayList<Item>();
 		itemNumber = 1000;
@@ -53,8 +54,22 @@ public class ItemDAO {
 		return Temp;
 	}
 	
+	public void insertcategory() {
+		
+	}
+	
+	public void insertitem() {
+		
+	}
 	
 	
+	public void deleteitem() {
+		
+	}
+	
+	public void deletecategory() {
+		
+	}
 	
 	
 	void earlyset(){
