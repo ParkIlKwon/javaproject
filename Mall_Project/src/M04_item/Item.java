@@ -41,7 +41,7 @@ public class Item {
 	}
 	
 	public String toString() {
-		String print = String.format("[%-6d] [%10s] [%10s] [%10d]", 
+		String print = String.format("[%-6d] [%10s] [%10s] [%10d]\n", 
 				number , categoryName , itemName , price);
 		return print;
 	}

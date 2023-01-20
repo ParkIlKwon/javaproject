@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import M01_Util.Util;
+
 public class ItemDAO {
 
-	ArrayList<Item> itemList;
+	public ArrayList<Item> itemList;
 	private int itemNumber;
 	public static ItemDAO idao = new ItemDAO();
 	public ItemDAO() {
@@ -63,12 +65,31 @@ public class ItemDAO {
 	}
 	
 	
-	public void deleteitem() {
-		
-	}
 	
 	public void deletecategory() {
-		
+		System.out.println("저장된 카테고리 이름");
+		int number = 1;
+		for (Item item : itemList) {
+			System.out.println(number+ " -> " + item.getCategoryName());
+			number++;
+		}
+		String category = itemList.get(Util.input.getValue("삭제할 번호입력 취소는 0 번 ", 1, itemList.size()-1)).getCategoryName();
+		for (int i = 0; i < itemList.size(); i++) {
+			if (itemList.get(i).getCategoryName().equals(category)) {
+				itemList.remove(i);
+				i--;
+			}
+		}
+	}
+	
+	public void deleteitem() {
+		System.out.println("저장된 아이템 이름");
+		int number = 1;
+		for (Item item : itemList) {
+			System.out.println(number+ " -> " + item.getItemName());
+			number++;
+		}
+		itemList.remove(Util.input.getValue("삭제할 번호입력 취소는 0 번 ", 1, itemList.size()-1));
 	}
 	
 	

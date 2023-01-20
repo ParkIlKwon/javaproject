@@ -25,7 +25,7 @@ public class adminController {
 	
 	public void init(){
 		memdao = MemberDAO.getInstance();
-		
+		itemdao = ItemDAO.idao;
 		cartdao = cartdao.getCartDAO();
 	}
 	
@@ -51,20 +51,22 @@ public class adminController {
 	
 	void printItemInfo() {
 		while (true) {
-			int sel = Util.input.getValue("[1]보기 [2]삭제 [0]뒤로", 0, 2);
+			int sel = Util.input.getValue("[1]보기 [2]카테고리생성[3]아이템생성 [4]카테고리삭제 [5]아이템삭제 [0]뒤로", 0, 5);
 			if (sel == 0) {
 				break;
-			}else if (cartdao.getCartList().size() == 0) {
-				System.err.println("저장된 아이템 내용이 없습니다.");
+			}else if (itemdao.itemList.size() == 0) {
+				System.err.println("저장된 아이템 정보가 없습니다.");
 				continue;
 			}else if (sel == 1) {
-				
+				System.out.println(itemdao.itemList);
 			}else if (sel == 2) {
 				
 			}else if (sel == 3) {
 				
 			}else if (sel == 4) {
-				
+				itemdao.deletecategory();
+			}else if (sel == 5) {
+				itemdao.deleteitem();
 			}
 		}
 	}
