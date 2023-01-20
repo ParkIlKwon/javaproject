@@ -11,7 +11,7 @@ public class MallController {
 	MemberController mctrl ;
 	adminController adminctrl;
 	CartController cartctrl;
-	String fdString;
+	
 	private MallController() {}
 	static private MallController instance = new MallController();
 	static public  MallController getInstance(){
