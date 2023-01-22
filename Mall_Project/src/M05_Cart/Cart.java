@@ -41,7 +41,7 @@ public class Cart {
 	}
 	
 	public String toString() {
-		String print = String.format("[%-6d] [아이디: %5s] [상품이름:%6s] [가격:%6d]", 
+		String print = String.format("[%-6d] [아이디: %5s] [상품이름:%6s] [가격:%6d]\n", 
 				number , memberID , itemName , itemPrice);
 		return print;
 	}

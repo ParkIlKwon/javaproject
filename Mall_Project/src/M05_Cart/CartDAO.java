@@ -79,7 +79,7 @@ public class CartDAO {
 	void printUsercart(String id){
 		for (Cart cart : cartList) {
 			if (cart.getMemberID().equals(id)) {
-				System.out.println(cart);
+				System.out.print(cart);
 			}
 		}
 	}

@@ -17,8 +17,7 @@ public class MallController {
 	static public  MallController getInstance(){
 		return instance;
 	}
-	
-	
+		
 	void printMenu(){
 		System.out.println(">>>>>> Mall <<<<<< ");
 		System.out.println("[1] log in [2] new account [3] exit");

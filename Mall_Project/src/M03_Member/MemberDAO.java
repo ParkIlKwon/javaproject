@@ -29,7 +29,7 @@ public class MemberDAO {
 		Memberlist.add(new Member(getMemberNum(), id, pw, name));
 	}
 	
-	boolean chkName(String name) {
+	public boolean chkName(String name) {
 		for (int i = 0; i < name.length(); i++) {
 			char c= name.charAt(i);
 			if (c > '0' && c <= '9' ) {
