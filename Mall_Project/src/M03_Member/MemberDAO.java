@@ -2,6 +2,8 @@ package M03_Member;
 
 import java.util.ArrayList;
 
+import M01_Util.Util;
+
 public class MemberDAO {
 	
 	public int memberNum;
@@ -59,6 +61,21 @@ public class MemberDAO {
 			}
 		}
 		return false;
+	}
+	
+	public void deleteMember() {
+		int index = 1;
+		ArrayList<String>temp = new ArrayList<String>();
+		for (Member member : Memberlist) {
+			if(!member.getId().equals("admin")) {
+				System.out.printf("[%-2d] %s\n",index,member.getId());
+				temp.add(member.getId());
+				index ++;
+			}
+		}
+		int sel = Util.input.getValue("삭제하실 멤버", 1, Memberlist.size());
+		String id = temp.get(sel);
+		Memberlist.remove(sel);
 	}
 	
 	private void ealrydata() {

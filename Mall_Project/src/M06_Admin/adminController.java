@@ -45,8 +45,16 @@ public class adminController {
 	}
 	
 	void printAccountInfo() {
-		
-		int sel = Util.input.getValue("[1]보기 [2]삭제 [0]뒤로", 0, 2);
+		while (true) {
+			int sel = Util.input.getValue("[1]보기 [2]삭제 [0]뒤로", 0, 2);
+			if (sel == 0) {
+				break;
+			}else if (sel == 1) {
+				System.out.println(memdao.getMemberlist());
+			}else if (sel == 2) {
+				memdao.deleteMember();
+			}
+		}
 	}
 	
 	void printItemInfo() {

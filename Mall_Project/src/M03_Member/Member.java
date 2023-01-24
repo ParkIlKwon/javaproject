@@ -44,7 +44,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "[멤버번호 :" + memberNum + ", id=" + id + ", pw=" + pw
-				+ ", 이름 :" + name + "]";
+				+ ", 이름 :" + name + "]\n";
 	}
 	
 	
