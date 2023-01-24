@@ -1,5 +1,8 @@
 package M03_Member;
 
+import M00_board.board;
+import M00_board.boardDAO;
+import M00_board.board_Controller;
 import M01_Util.Util;
 import M02_Mall.MallController;
 import M04_item.ItemController;
@@ -66,8 +69,7 @@ public class MemberController {
 			} else if (sel == 2) {
 				CartCtrl.cartMenu();
 			} else if (sel == 3) {
-				
-				
+				board_Controller.getinstance().menu();
 				//정확히 뭘 구현하는지 알지못함.
 			}
 			

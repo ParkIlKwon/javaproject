@@ -1,5 +1,6 @@
 package M02_Mall;
 
+import M00_board.board_Controller;
 import M03_Member.MemberController;
 import M04_item.ItemController;
 import M05_Cart.CartController;
@@ -14,6 +15,7 @@ public class _main {
 		ItemController.getInstance().init();
 		CartController.getInstance().init();
 		adminController.getInstance().init();
+		board_Controller.getinstance().init();
 		MallController.getInstance().menuMall();
 	}
 
