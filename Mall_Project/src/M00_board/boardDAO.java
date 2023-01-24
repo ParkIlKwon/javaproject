@@ -7,7 +7,7 @@ import M03_Member.Member;
 import M03_Member.MemberController;
 
 public class boardDAO {
-	String id = MemberController.getInstance().id;
+	String id ;
 	private boardDAO(){};
 	private static boardDAO instance = new boardDAO();
 	public static boardDAO getinstance() {
@@ -17,18 +17,18 @@ public class boardDAO {
 	private ArrayList<board>boardList = new ArrayList<board>();
 	public void init() {
 		
-		boardList.add(new board("1","내용1","aaa"));
-		boardList.add(new board("2","내용1","aaa"));
-		boardList.add(new board("3","내용1","aaa"));
+		boardList.add(new board("비싸요","내용1","aaa"));
+		boardList.add(new board("할인해줘요","내용1","aaa"));
+		boardList.add(new board("불친절해요","내용1","aaa"));
 		boardList.add(new board("4","내용1","bbb"));
-		boardList.add(new board("5","내용1","bbb"));
-		
+		boardList.add(new board("5","할인해줘요","bbb"));
+		 
 	}
 		
 	public void printboard(){
 		final int onepage = 4;
 		int currentPage = 1;
-		
+		id = MemberController.getInstance().id;
 		
 		int startindex = 0;
 		int endindex = 0;
@@ -40,24 +40,24 @@ public class boardDAO {
 					: onepage; 
 		
 			int num = 0;
-			System.out.println("end --> " + endindex);
 			for (int i = startindex; i < endindex; i++) {
 				System.out.print(++num + ")" + boardList.get(i).getTitle());
 				System.out.println("\t --- " + boardList.get(i).getId());
 			}
 			
-			int sel = Util.input.getValue("[1]다음 [2]이전 [3]게시글선택 [4]게시글추가 [5]게시글삭제 [0]뒤로", 1, 2) - 1;
-			if(sel == -1) return; 
-			if(sel == 0) {
+			int sel = Util.input.getValue("[1]다음 [2]이전 [3]게시글수정 및 내용확인 \n[4]게시글추가 [5]게시글삭제 [0]뒤로", 0, 5);
+			int pageNum = endindex - startindex ;
+			if(sel == -1 || sel == 0 ) return; 
+			if((currentPage == 1 && sel == 2) || (currentPage == totalPage && sel == 1)) continue;
+			if(sel == 1) {
 				currentPage ++;
-			} else if (sel == 1) {
-				currentPage --;
 			} else if (sel == 2) {
-				selectBoard();
+				currentPage --;
 			} else if (sel == 3) {
-				addboard();
+				fixboard(currentPage,pageNum);
 			} else if (sel == 4) {
-				int pageNum = startindex - endindex;
+				addboard();
+			} else if (sel == 5) {
 				deleteboard(currentPage,pageNum);
 			}
 		}
@@ -68,20 +68,59 @@ public class boardDAO {
 		String title = Util.sc.next();
 		System.out.println("게시글 내용을 입력하세요 .");
 		String body = Util.sc.next();
+		
 		boardList.add(new board(title,body,id));
 	}
 	
 	private void deleteboard(int currentValue , int page) {
 	
-		int nsel = Util.input.getValue("몇번게시글을 지우겠습니까 ?", 1, page);
-		if(!boardList.get(nsel).getId().equals(id)) return;
+		int nsel = selectBoard(currentValue ,page , "삭제");
+		if (chkBoardId(nsel)) {
+			int index = ((currentValue -1) * 4) + nsel; 
+			boardList.remove(index);
+			System.out.println("삭제완료.");
+		}else {
+			System.err.println("잘못된 입력");
+		}
+	}
+	
+	private void fixboard(int currentValue , int page) {
+		while (true) {
+			int sel = Util.input.getValue("[1]보기 [2]수정 [0]뒤로", 0, 2);
+			if(sel == 0) return;
+			else if (sel == 1) {
+				int nsel = selectBoard(currentValue ,page , "확인할 게시글 번호");
+					System.out.println("작성자 >>> " + id );
+					System.out.println(boardList.get(nsel).getBody());
+			
+			}else if (sel == 2) {
+				int nsel = selectBoard(currentValue ,page , "수정할 게시글 번호");
+				if (chkBoardId(nsel)) {
+					System.out.println("내용을 입력하세요.");
+					String str = Util.input.sc.next();
+					boardList.get(nsel).setBody(str);
+				}else {
+					System.err.println("잘못된 입력");
+				}
+			}
+		}
+	}
+	
+	private int selectBoard(int currentValue , int page , String msg) {
+	
+		int nsel = Util.input.getValue("몇번 게시글을"+ msg +"선택하세요.", 0, page) -1;
+		if(nsel == -2 ) return -1;
+		return ((currentValue -1) * 4) + nsel; 
 		
-	}
+		}
 	
-	private void selectBoard() {
-		int sel = Util.input.getValue("몇번 게시글을 수정할지 선택하세요.", 0, 4);
-	}
 	
+	private boolean chkBoardId(int nsel){
+		if(!boardList.get(nsel).getId().equals(id)) {
+			System.err.println("다른 사용자의 글은 수정하거나 삭제 하실 수 없습니다.");
+			return false;
+		} return true;
+	}
 }
 
 
