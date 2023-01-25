@@ -93,9 +93,6 @@ public class adminController {
 				cartdao.selectiveDelete();
 			}
 		}
-		
-		
-		
 	}
 }
 

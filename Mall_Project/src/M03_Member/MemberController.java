@@ -72,8 +72,6 @@ public class MemberController {
 				board_Controller.getinstance().menu();
 				//정확히 뭘 구현하는지 알지못함.
 			}
-			
-
 		}
 	}
 	
