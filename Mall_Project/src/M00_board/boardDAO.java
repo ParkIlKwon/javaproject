@@ -90,7 +90,7 @@ public class boardDAO {
 			if(sel == 0) return;
 			else if (sel == 1) {
 				int nsel = selectBoard(currentValue ,page , "확인할 게시글 번호");
-					System.out.println("작성자 >>> " + id );
+					System.out.println("작성자 >>> " + boardList.get(nsel).getId() );
 					System.out.println(boardList.get(nsel).getBody());
 			
 			}else if (sel == 2) {
