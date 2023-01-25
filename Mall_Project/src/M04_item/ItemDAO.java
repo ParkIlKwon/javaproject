@@ -14,7 +14,6 @@ public class ItemDAO {
 	private int itemNumber;
 	public static ItemDAO idao = new ItemDAO();
 	
-	
 	public ItemDAO() {
 		itemList = new ArrayList<Item>();
 		itemNumber = 1000;
@@ -99,7 +98,7 @@ public class ItemDAO {
 			System.err.println("아이템 생성 실패...");
 			itemList.remove(itemList.size()-1);
 		}
-		}
+	}
 	
 	String newItem() {
 		String str = Util.input.getString("추가할 아이템을 입력하세요 ^o^");
@@ -130,7 +129,7 @@ public class ItemDAO {
 			System.out.println(number+ " -> " + item.getItemName());
 			number++;
 		}
-		itemList.remove(Util.input.getValue("삭제할 번호입력 취소는 0 번 ", 1, itemList.size()-1));
+		itemList.remove(Util.input.getValue("삭제할 번호입력 취소는 0 번 ", 1, itemList.size())-1);
 	}
 	
 	
