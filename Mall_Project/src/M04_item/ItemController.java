@@ -19,7 +19,7 @@ public class ItemController {
 	String id;
 
 	public void init(){
-		itemDAO = new ItemDAO();
+		itemDAO = itemDAO.idao;
 		cartDAO = CartDAO.getCartDAO();
 		memctrl = new MemberController();
 	}

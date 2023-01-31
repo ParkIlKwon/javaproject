@@ -1,12 +1,11 @@
-package M03_Member;
+package member;
 
 public class Member {
-
+	
 	private int memberNum;
 	private String id;
 	private String pw;
 	private String name;
-	
 	
 	public Member(int memberNum, String id, String pw, String name) {
 		super();
@@ -46,7 +45,5 @@ public class Member {
 		return "[멤버번호 :" + memberNum + ", id=" + id + ", pw=" + pw
 				+ ", 이름 :" + name + "]\n";
 	}
-	
-	
-	
+
 }

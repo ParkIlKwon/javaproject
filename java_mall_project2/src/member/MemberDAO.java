@@ -1,15 +1,15 @@
-package M03_Member;
+package member;
 
 import java.util.ArrayList;
-
-import M01_Util.Util;
+import Util.Util;
 
 public class MemberDAO {
-	
+
 	public int memberNum;
 	private ArrayList<Member>Memberlist = new ArrayList<Member>();
 	private MemberDAO() {
 		memberNum = 1001;
+		System.out.println("초기세팅완료");
 		ealrydata();
 	}
 	
@@ -18,7 +18,7 @@ public class MemberDAO {
 		return instance;
 	}
 	
-	int getMemberNum() {
+	private int getMemberNum() {
 		if (Memberlist.size() == 1) {
 			memberNum = 1001;
 		} else {
@@ -27,22 +27,12 @@ public class MemberDAO {
 		return memberNum;
 	}
 	
-	void accountMember(String id , String pw , String name){
+	public void accountMember(String id , String pw , String name){
 		Memberlist.add(new Member(getMemberNum(), id, pw, name));
 	}
 	
-	public boolean chkName(String name) {
-		for (int i = 0; i < name.length(); i++) {
-			char c= name.charAt(i);
-			if (c > '0' && c <= '9' ) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
 	//로그인 체크
-	boolean chkMemberInfo(String id, String pw) {
+	public boolean chkMemberInfo(String id, String pw) {
 		for (int i = 0; i < Memberlist.size(); i++) {
 			if (Memberlist.get(i).getId().equals(id) && 
 					Memberlist.get(i).getPw().equals(pw)) {
@@ -53,7 +43,7 @@ public class MemberDAO {
 	}
 	
 	//중복체크
-	boolean chkduplicate(String id) {
+	public boolean chkduplicate(String id) {
 		for (Member member : Memberlist) {
 			if (member.getId().equals(id)) {
 				System.err.println(" 아 이 디 중 복 :< ");
@@ -73,8 +63,8 @@ public class MemberDAO {
 				index ++;
 			}
 		}
-		int sel = Util.input.getValue("삭제하실 멤버", 1, Memberlist.size());
-		String id = temp.get(sel);
+		int sel = Util.input.getValue("삭제하실 멤버", 1, Memberlist.size())-1;
+		if(sel == -2)return;
 		Memberlist.remove(sel);
 	}
 	
@@ -87,7 +77,5 @@ public class MemberDAO {
 	public ArrayList<Member> getMemberlist() {
 		return Memberlist;
 	}
-	
-	
 	
 }

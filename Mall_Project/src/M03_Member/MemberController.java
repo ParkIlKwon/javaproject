@@ -1,5 +1,8 @@
 package M03_Member;
 
+import M00_board.board;
+import M00_board.boardDAO;
+import M00_board.board_Controller;
 import M01_Util.Util;
 import M02_Mall.MallController;
 import M04_item.ItemController;
@@ -19,6 +22,7 @@ public class MemberController {
 	static public  MemberController getInstance(){
 		return instance;
 	}
+	
 	public void init(){
 		dao = CartDAO.getCartDAO();
 		memdao = MemberDAO.getInstance();
@@ -29,7 +33,7 @@ public class MemberController {
 	public boolean login() {
 		System.out.println("저장된 정보");
 		for (Member m : memdao.getMemberlist()) {
-			System.out.println(m);
+			System.out.print(m);
 		}
 		System.out.println(" ==== 로그인 메뉴 ====");
 		id = Util.input.getString("id");
@@ -64,11 +68,10 @@ public class MemberController {
 				itemCtrl.categoryMenu(id);
 			} else if (sel == 2) {
 				CartCtrl.cartMenu();
-			}else if (sel == 3) {
-				
+			} else if (sel == 3) {
+				board_Controller.getinstance().menu();
+				//정확히 뭘 구현하는지 알지못함.
 			}
-			
-
 		}
 	}
 	

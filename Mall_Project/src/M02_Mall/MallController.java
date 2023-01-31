@@ -59,7 +59,6 @@ public class MallController {
 				System.out.println("종료합니다.");
 				break;
 			}
-			
 		}
 	}
 	

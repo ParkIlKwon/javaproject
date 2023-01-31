@@ -12,12 +12,14 @@ public class CartController {
 	MallController Mctrl;
 	MemberController MemberCtrl;
 	CartDAO cdao ;
+	String som;
 			
 	private CartController() {}
 	static private CartController instance = new CartController();
 	static public CartController getInstance() {
 		return instance;
 	}
+	
 	
 	public void init() {
 		Mctrl = MallController.getInstance();
@@ -37,14 +39,13 @@ public class CartController {
 					total+= c.getItemPrice();
 				}
 				System.out.printf("총 [%d] 원 입니다 . :)",total);
-				Mctrl.menuMall();
 				cdao.deletCart(MemberCtrl.id);
+				Mctrl.menuMall();
 			}else if (sel == 2 && cdao.getCartList().size() != 0) {
 				cdao.printUsercart(MemberCtrl.id);
 			}else {
 				System.err.println("카트에 물건이 존재 하지 않습니다. :(");
 			}
-
 		}
 	}
 	

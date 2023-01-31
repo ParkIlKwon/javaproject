@@ -1,4 +1,4 @@
-package M04_item;
+package item;
 
 public class Item {
 	private int number;
@@ -45,4 +45,5 @@ public class Item {
 				number , categoryName , itemName , price);
 		return print;
 	}
+
 }

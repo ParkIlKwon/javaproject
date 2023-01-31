@@ -1,6 +1,7 @@
-package M05_Cart;
+package cart;
 
 public class Cart {
+	
 	private int number;
 	private String memberID;
 	private String itemName;
